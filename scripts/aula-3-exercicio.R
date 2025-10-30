@@ -16,6 +16,7 @@ ggplot2::ggplot(data = df1) +
     y = "Total"
   ) +
   ggplot2::theme(geom = ggplot2::element_geom(ink = "dodgerblue"))
+
 # EXERCICIO 2  ------------------------------------------------------------
 
 df2 <- sinasc_rs |>
@@ -50,6 +51,7 @@ ggplot2::ggplot(data = df4, mapping = ggplot2::aes(x = DIASEMNASC)) +
     x = "Dia da semana de nascimento",
     y = "Total"
   )
+
 # EXERCICIO 5 -------------------------------------------------------------
 
 df5 <- sinasc_rs |>
