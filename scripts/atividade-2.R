@@ -71,7 +71,9 @@ titanic |>
   ) +
   ggplot2::labs(
     y = "Classe",
-    x = "Contagem", 
-    fill = "Status"
+    x = "Prop",
+    fill = "Status",
+    title = "Proporção de sobreviventes por classe",
+    caption = "Fonte: Titanic Dataset",
   ) +
   ggplot2::theme_bw()
