@@ -71,6 +71,7 @@ titanic |>
   ) +
   ggplot2::labs(
     y = "Classe",
-    x = "Contagem"
+    x = "Contagem", 
+    fill = "Status"
   ) +
   ggplot2::theme_bw()
