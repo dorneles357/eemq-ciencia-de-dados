@@ -62,7 +62,7 @@ titanic |>
   dplyr::group_by(Pclass, Survived) |>
   dplyr::summarise(Total = dplyr::n(), .groups = "drop") |>
   dplyr::mutate(Prop = Total / sum(Total)) |>
-  ggplot2::ggplot(ggplot2::aes(y = Pclass, x = Survived)) +
+  ggplot2::ggplot(ggplot2::aes(x = Total, y = Pclass)) +
   ggplot2::geom_bar(
     ggplot2::aes(fill = Survived),
     stat = "identity",
