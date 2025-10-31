@@ -54,3 +54,22 @@ ggplot2::ggplot(data = df, ggplot2::aes(y = dept, fill = admit)) +
     ggplot2::scale_fill_manual(values = c("skyblue", "salmon")) +
     ggplot2::facet_wrap(~dept)
   ggplot2::theme_bw()
+
+# DPLYR & GGPLOT2 ---------------------------------------------------------
+
+df |>
+    dplyr::group_by(gender, admit) |>
+    dplyr::summarise(Total = dplyr::n(), .groups = "drop") |>
+    dplyr::mutate(Prop = Total / sum(Total)) |>
+    ggplot2::ggplot(ggplot2::aes(y = gender, x = Total)) + 
+    ggplot2::geom_bar(
+      ggplot2::aes(fill = admit),
+      stat = "identity",
+      position = "fill",
+      width = 0.8
+    ) +
+    ggplot2::geom_col(
+      ggplot2::aes(fill = admit),
+      position = "fill",
+      width = 0.8
+    )
