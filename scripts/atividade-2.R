@@ -8,20 +8,29 @@ dplyr::glimpse(titanic)
 # EXERCICIO 1 -------------------------------------------------------------
 
 ggplot2::ggplot(data = titanic, ggplot2::aes( x = Age)) +
-  ggplot2::geom_histogram(binwidth = 5, fill = "lightblue", color = "black") +
+  ggplot2::geom_histogram(bins = 10, fill = "lightblue", color = "black") +
   ggplot2::labs(
     x = "Idade",
     y = "Contagem"
   ) +
-  ggplot2::theme_minimal()
+  ggplot2::theme_bw()
 
 # EXERCICIO 2 -------------------------------------------------------------
-
-ggplot2::ggplot(data = titanic, mapping = ggplot2::aes(x = Pclass)) +
+titanic |>
+  dplyr::mutate(
+    Pclass = dplyr::case_when(
+      Pclass == "1st" ~ "Primeira Classe",
+      Pclass == "2nd" ~ "Segunda Classe",
+      Pclass == "3rd" ~ "Terceira Classe",
+      TRUE ~ "Tripulação"
+    )
+  ) |>
+ggplot2::ggplot(mapping = ggplot2::aes(x = Pclass)) +
   ggplot2::geom_density(ggplot2::aes(fill = Pclass), alpha = 0.5) +
   ggplot2::labs(
     x = "Classe",
-    y = "Idade"
+    y = "Idade",
+    fill = "Classe"
   ) +
   ggplot2::theme_bw()
 
@@ -36,8 +45,9 @@ titanic |>
       TRUE ~ "Tripulação"
     )
   ) |>
+  dplyr::mutate(Pclass = forcats::fct_infreq(Pclass)) |>
 ggplot2::ggplot() +
-  ggplot2::geom_bar(ggplot2::aes( x = Pclass)) +
+  ggplot2::geom_bar(ggplot2::aes( x = forcats::fct_rev(Pclass))) +
   ggplot2::labs(
     x = "Classe",
     y = "Contagem"

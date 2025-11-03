@@ -3,6 +3,7 @@ packages <- c(
   "readr",
   "palmerpenguins",
   "ggplot2",
-  "esquisse"
+  "esquisse",
+  "forcats"
 )
 install.packages(packages, repos = "https://cloud.r-project.org/")
