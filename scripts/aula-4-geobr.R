@@ -34,3 +34,11 @@ ggplot2::ggplot(data = df_school) +
   ggplot2::geom_sf(data = df_santa_maria) +
   ggplot2::geom_sf(ggplot2::aes(color = urban)) +
   ggplot2::facet_wrap(~ government_level)
+
+# MAP WITH GGPLOT2 --------------------------------------------------------
+
+df_map_world <- ggplot2::map_data(map = "world")
+
+ggplot2::ggplot(data = df_map_world) +
+  ggplot2::geom_polygon(ggplot2::aes(x = long, y = lat, group = group))
+  
